@@ -27,7 +27,7 @@ class TestHTMLNode(unittest.TestCase):
         result = node.props_to_html()
         self.assertIn('id="main"', result)
         self.assertIn('href="https://datest.aol"', result)
-        self.assertIn('title="The Title"', result)
+        self.assertIn('title="The Title"', result )
 
 
     

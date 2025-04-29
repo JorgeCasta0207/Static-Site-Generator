@@ -32,7 +32,7 @@ class LeafNode(HTMLNode):
     
     # Turning into HTML tag
     def to_html(self):
-        if self.value is "" or self.value is None:
+        if self.value == "" or self.value is None:
             raise ValueError("All leaf nodes must have a value.")
         
         if self.tag == "" or self.tag is None:
@@ -50,4 +50,36 @@ class LeafNode(HTMLNode):
 
 
 
-    
+class ParentNode(HTMLNode):
+
+
+    def __init__(self, tag, children, props=None):
+        super().__init__(tag, value=None, children=children, props=props)
+
+
+    def to_html(self):
+
+        if self.tag == "" or self.tag is None:     # Checking for tag value
+            raise ValueError("Object has no tag value")  
+        
+        if self.children is None or len(self.children) == 0:    # Checking for children value
+            raise ValueError("Missing Child Value")
+        
+
+        props_html = self.props_to_html()
+
+        if props_html:
+            parent_html = f"<{self.tag} {props_html}>"
+        else:
+            parent_html = f"<{self.tag}>"
+
+        for child in self.children:    # Recursing through children and adding it too 'html'
+            parent_html += child.to_html()
+  
+        parent_html += f"</{self.tag}>"   # Adding closing tag to the end 
+        
+        return parent_html
+        
+
+
+            

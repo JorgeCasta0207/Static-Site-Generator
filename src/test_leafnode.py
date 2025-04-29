@@ -6,13 +6,21 @@ class TestLeafNode(unittest.TestCase):
 
     def test_leaf_to_html_p(self):
         node = LeafNode("p", "Hello World!")
-        self.assertEqual(node.to_html(), "<p>Hello World!</p>")
+
+        self.assertEqual(
+            node.to_html(), 
+            "<p>Hello World!</p>"
+        )
 
 
 
     def test_leaf_with_props(self):
         node = LeafNode("p", "Hello World!", props={"img": "hello.jpg"})
-        self.assertEqual(node.to_html(), '<p img="hello.jpg">Hello World!</p>')
+        
+        self.assertEqual(
+            node.to_html(), 
+            '<p img="hello.jpg">Hello World!</p>'
+        )
 
 
 

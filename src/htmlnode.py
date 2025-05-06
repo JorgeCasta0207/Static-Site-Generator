@@ -1,3 +1,5 @@
+from textnode import TextNode, TextType
+
 
 
 class HTMLNode:
@@ -82,4 +84,29 @@ class ParentNode(HTMLNode):
         
 
 
-            
+
+def text_node_to_html_node(text_node):
+    if text_node.text_type == TextType.TEXT:
+        node = LeafNode(None, text_node.text)
+    
+    elif text_node.text_type == TextType.BOLD:
+        node = LeafNode("b", text_node.text)
+    
+    elif text_node.text_type == TextType.ITALIC:
+        node = LeafNode("i", text_node.text)
+    
+    elif text_node.text_type == TextType.CODE:
+        node = LeafNode("code", text_node.text)
+    
+    elif text_node.text_type == TextType.LINK:
+        node = LeafNode("a", text_node.text, {"href": text_node.url})
+    
+    elif text_node.text_type == TextType.IMAGE:
+        node = LeafNode("img", "", {"src": text_node.url, "alt": text_node.text})
+    
+    else:
+        raise Exception("Unexpected Text Type")
+    
+    return node
+    
+    

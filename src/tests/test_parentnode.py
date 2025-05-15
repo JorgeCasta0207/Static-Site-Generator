@@ -68,5 +68,5 @@ class TestParentNode(unittest.TestCase):
 
 
 
-if __name__ == "__main___":
+if __name__ == "__main__":
     unittest.main()
